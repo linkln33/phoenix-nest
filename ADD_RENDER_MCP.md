@@ -69,3 +69,4 @@ I can see you already have MCP configured! Here's how to add Render:
 
 For free tier, use manual deployment via Render Dashboard (see `RENDER_SETUP.md`).
 
+

@@ -5,10 +5,6 @@ import {
   // Game Icons (magic themed)
   GiMagicPotion,
   GiHerbsBundle,
-  GiOilLamp,
-  GiElixir,
-  GiCrystalShine,
-  GiTalisman,
   GiBookCover,
   GiCandleFlame,
   GiIncense,
@@ -20,13 +16,11 @@ import {
   GiSparkles,
   GiGemPendant,
   GiEyeOfHorus,
-  GiLightningBolt,
   GiHeartShield,
   GiShield,
   GiSwordBrandish,
   GiCrown,
   GiCoins,
-  GiPackage,
 } from "react-icons/gi";
 import {
   Search as SearchIcon,
@@ -42,12 +36,16 @@ import {
   ChevronDown as ChevronDownIcon,
   Check as CheckIcon,
   Languages as LanguagesIcon,
+  Zap as ZapIcon,
+  Package as PackageIcon,
+  Sparkles as SparklesIcon,
+  Gem as GemIcon,
 } from "lucide-react";
 import { 
-  Github as GithubIcon,
-  Twitter as TwitterIcon,
-  Mail as MailIcon,
-  Globe as GlobeIcon,
+  FaGithub as GithubIcon,
+  FaTwitter as TwitterIcon,
+  FaEnvelope as MailIcon,
+  FaGlobe as GlobeIcon,
 } from "react-icons/fa";
 
 // Magical/Witchcraft themed icon mappings
@@ -59,14 +57,14 @@ export const MagicIcons = {
   wand: GiWizardStaff,
   gem: GiGemPendant,
   eye: GiEyeOfHorus,
-  zap: GiLightningBolt,
+  zap: ZapIcon,
   crystal: GiCrystalBall,
   
   // Potions & Alchemy
   potion: GiMagicPotion,
-  elixir: GiElixir,
+  elixir: GiMagicPotion, // Using potion as elixir alternative
   herbs: GiHerbsBundle,
-  oils: GiOilLamp,
+  oils: GiCandleFlame, // Using candle flame as oils alternative
   
   // Ritual items
   book: GiBookCover,
@@ -84,7 +82,7 @@ export const MagicIcons = {
   
   // Commerce
   coins: GiCoins,
-  package: GiPackage,
+  package: PackageIcon,
   
   // UI
   search: SearchIcon,
