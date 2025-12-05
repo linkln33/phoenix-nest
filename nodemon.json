@@ -1,0 +1,8 @@
+{
+  "watch": ["app", "components", "lib", "prisma"],
+  "ext": "ts,tsx,js,jsx,json",
+  "ignore": ["node_modules", ".next"],
+  "exec": "next dev -p 8000",
+  "delay": 1000
+}
+

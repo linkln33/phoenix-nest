@@ -1,0 +1,63 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String    @id @default(cuid())
+  walletAddress String    @unique
+  username      String?
+  bio           String?
+  avatar        String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  listings      Listing[]
+  purchases     Purchase[]
+
+  @@index([walletAddress])
+}
+
+model Listing {
+  id          String    @id @default(cuid())
+  sellerId    String
+  seller      User     @relation(fields: [sellerId], references: [id], onDelete: Cascade)
+  title       String
+  description String
+  price       BigInt   // Price in $GUL tokens (with decimals)
+  category    String?
+  images      String[] // Array of image URLs or IPFS hashes
+  sold        Boolean  @default(false)
+  buyerId     String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  purchases   Purchase[]
+
+  @@index([sellerId])
+  @@index([sold])
+  @@index([category])
+}
+
+model Purchase {
+  id            String   @id @default(cuid())
+  listingId     String
+  listing       Listing  @relation(fields: [listingId], references: [id])
+  buyerId       String
+  buyer         User     @relation(fields: [buyerId], references: [id])
+  transactionSignature String @unique
+  amount        BigInt   // Amount paid in $GUL tokens
+  createdAt     DateTime @default(now())
+
+  @@index([buyerId])
+  @@index([listingId])
+  @@index([transactionSignature])
+}
+
