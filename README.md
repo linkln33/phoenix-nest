@@ -1,72 +1,109 @@
-# Phenix Nest - Decentralized Handmade Marketplace
+# Phenix Nest - Mystical Marketplace
 
-## Quick Start (Local Database)
-
-### Option 1: Docker (Easiest - Port 8000 for pgAdmin)
-
-```bash
-# Start PostgreSQL + pgAdmin
-docker-compose up -d
-
-# Setup database
-npm run db:generate
-npm run db:push
-npm run db:seed
-
-# Start app
-npm run dev
-```
-
-**Access:**
-- App: http://localhost:3000
-- Database UI (pgAdmin): http://localhost:8000
-  - Email: `admin@phenix.local`
-  - Password: `admin`
-
-### Option 2: Local PostgreSQL
-
-1. Install PostgreSQL locally
-2. Create database: `CREATE DATABASE phenix_nest;`
-3. Update `.env.local` with your credentials
-4. Run: `npm run db:push && npm run dev`
-
-### Environment Variables
-
-Create `.env.local`:
-```env
-DATABASE_URL="postgresql://postgres:postgres@localhost:5432/phenix_nest?schema=public"
-NEXT_PUBLIC_SOLANA_NETWORK=devnet
-NEXT_PUBLIC_GUL_TOKEN_MINT=11111111111111111111111111111111
-```
+A decentralized marketplace for witchcraft and sorcery items, built on Solana blockchain. Trade enchanted goods, rare ingredients, and magical artifacts for $GUL tokens.
 
 ## Features
 
-- 🔐 Wallet Authentication (Phantom, Solflare, Torus)
-- 🛍️ Marketplace with search & filters
-- 📝 Create listings with images
-- 💰 Purchase with $GUL tokens
-- 👤 User profiles
-- 🗄️ PostgreSQL database
+- 🧙‍♀️ Witchcraft-themed marketplace
+- 🔮 Browse potions, herbs, oils, elixirs, crystals, talismans, and more
+- 💰 Trade with $GUL tokens on Solana
+- 🌍 English and Bulgarian language support
+- 🎨 Beautiful mystical UI with animations
+- 📱 Responsive design
 
-## Commands
+## Tech Stack
 
+- **Framework**: Next.js 14
+- **Blockchain**: Solana
+- **Database**: PostgreSQL (Prisma ORM)
+- **Styling**: Tailwind CSS
+- **Animations**: Framer Motion
+- **Icons**: React Icons, Lucide React
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js 18+ 
+- PostgreSQL database (or use Docker)
+- Solana wallet
+
+### Installation
+
+1. Clone the repository:
 ```bash
-npm run dev          # Start dev server
-npm run db:generate  # Generate Prisma client
-npm run db:push      # Push schema to database
-npm run db:seed      # Seed test data
-npm run db:studio    # Open Prisma Studio
+git clone YOUR_REPO_URL
+cd pfenix
 ```
 
-## Database Setup
-
-**With Docker:**
+2. Install dependencies:
 ```bash
-docker-compose up -d    # Start
-docker-compose down    # Stop
-docker-compose down -v # Reset (removes data)
+npm install
 ```
 
-**pgAdmin (Port 8000):**
-- URL: http://localhost:8000
-- Add server: Host `postgres`, User `postgres`, Password `postgres`
+3. Set up environment variables:
+```bash
+cp .docker.env.example .env.local
+```
+
+Edit `.env.local` with your configuration:
+```env
+DATABASE_URL="postgresql://postgres:postgres@localhost:5432/phenix_nest?schema=public"
+NEXT_PUBLIC_SOLANA_NETWORK=devnet
+NEXT_PUBLIC_GUL_TOKEN_MINT=your_token_mint_address
+```
+
+4. Set up database:
+```bash
+# Using Docker
+docker compose -f docker-compose.dev.yml up -d
+
+# Or use your own PostgreSQL instance
+npm run db:push
+npm run db:seed
+```
+
+5. Run development server:
+```bash
+npm run dev
+```
+
+Visit [http://localhost:8000](http://localhost:8000)
+
+## Deployment
+
+See [DEPLOYMENT.md](./DEPLOYMENT.md) for deployment options including:
+- Railway
+- Render
+- Fly.io
+- Docker deployment
+
+## Project Structure
+
+```
+├── app/                 # Next.js app directory
+│   ├── api/            # API routes
+│   ├── listing/        # Listing detail pages
+│   └── page.tsx        # Homepage
+├── components/         # React components
+├── lib/               # Utilities and configurations
+├── prisma/            # Database schema
+└── scripts/           # Seed scripts
+```
+
+## Scripts
+
+- `npm run dev` - Start development server (port 8000)
+- `npm run build` - Build for production
+- `npm start` - Start production server
+- `npm run db:push` - Push database schema
+- `npm run db:seed` - Seed demo listings
+- `npm run db:studio` - Open Prisma Studio
+
+## License
+
+MIT
+
+## Contributing
+
+Contributions welcome! Please feel free to submit a Pull Request.
