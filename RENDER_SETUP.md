@@ -49,7 +49,7 @@ Step-by-step guide to deploy Phenix Nest on Render.
    Click "Add Environment Variable" and add:
    
    ```
-   DATABASE_URL = (paste the Internal Database URL from Step 2)
+   DATABASE_URL = postgresql://phenix_nest_db_user:bnvZCoCZDQpEqZDL1uchd0Xw0rqCRHTO@dpg-d4pmc37diees738qtisg-a/phenix_nest_db
    ```
    
    ```
@@ -63,6 +63,8 @@ Step-by-step guide to deploy Phenix Nest on Render.
    ```
    NODE_ENV = production
    ```
+   
+   **Note**: If your database is in the same Render account, use the **Internal Database URL** instead (found in your PostgreSQL service → Info tab). The Internal URL is faster and more secure.
 
 6. Click **"Create Web Service"**
 
