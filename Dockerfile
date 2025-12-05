@@ -3,12 +3,15 @@ FROM node:20-alpine AS builder
 
 WORKDIR /app
 
+# Install Python and build tools for native dependencies
+RUN apk add --no-cache python3 make g++
+
 # Copy package files
 COPY package*.json ./
 COPY prisma ./prisma/
 
 # Install dependencies
-RUN npm install
+RUN npm install --ignore-scripts
 
 # Generate Prisma Client
 RUN npx prisma generate
@@ -26,12 +29,15 @@ WORKDIR /app
 
 ENV NODE_ENV=production
 
+# Install Python and build tools for native dependencies
+RUN apk add --no-cache python3 make g++
+
 # Copy package files
 COPY package*.json ./
 COPY prisma ./prisma/
 
 # Install production dependencies only
-RUN npm install --only=production
+RUN npm install --only=production --ignore-scripts
 
 # Generate Prisma Client
 RUN npx prisma generate
