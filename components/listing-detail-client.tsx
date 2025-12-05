@@ -130,7 +130,9 @@ export function ListingDetailClient({ listingId }: ListingDetailClientProps) {
       // Update listing via API - get user first to get ID
       const buyerUser = await fetchUser(publicKey.toBase58());
       if (buyerUser) {
-        const updates: { sold: boolean; buyerId: string } = { 
+        // Type assertion needed because updateListing from api accepts buyerId, not buyer
+        type UpdateListingParams = { sold?: boolean; buyerId?: string };
+        const updates: UpdateListingParams = { 
           sold: true, 
           buyerId: buyerUser.walletAddress 
         };
