@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: phenix-nest
+    env: node
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NEXT_PUBLIC_SOLANA_NETWORK
+        value: devnet
+      - key: NEXT_PUBLIC_GUL_TOKEN_MINT
+        value: 11111111111111111111111111111111
+      - key: DATABASE_URL
+        fromDatabase:
+          name: phenix-nest-db
+          property: connectionString
+
+databases:
+  - name: phenix-nest-db
+    plan: free
+    databaseName: phenix_nest
+    user: phenix_user
+
