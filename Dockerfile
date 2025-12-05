@@ -19,6 +19,9 @@ RUN npx prisma generate
 # Copy source code
 COPY . .
 
+# Ensure public directory exists (Next.js requires it)
+RUN mkdir -p public
+
 # Build the application
 RUN npm run build
 
@@ -44,8 +47,10 @@ RUN npx prisma generate
 
 # Copy built application from builder
 COPY --from=builder /app/.next ./.next
-COPY --from=builder /app/public ./public
 COPY --from=builder /app/next.config.js ./next.config.js
+
+# Copy public directory (ensured to exist in builder stage)
+COPY --from=builder /app/public ./public
 
 # Create non-root user
 RUN addgroup --system --gid 1001 nodejs
