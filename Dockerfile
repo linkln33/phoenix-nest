@@ -61,10 +61,13 @@ RUN chown -R nextjs:nodejs /app
 
 USER nextjs
 
-EXPOSE 8000
-
-ENV PORT=8000
+# Render sets PORT environment variable (defaults to 10000)
+# Next.js will automatically use PORT env var if available
 ENV HOSTNAME="0.0.0.0"
 
-CMD ["node_modules/.bin/next", "start", "-p", "8000"]
+# Expose port (Render uses PORT env var, default 10000)
+EXPOSE ${PORT:-10000}
+
+# Use PORT environment variable for Next.js
+CMD sh -c "node_modules/.bin/next start -p ${PORT:-10000}"
 
