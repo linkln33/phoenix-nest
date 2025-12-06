@@ -65,9 +65,9 @@ USER nextjs
 # Next.js will automatically use PORT env var if available
 ENV HOSTNAME="0.0.0.0"
 
-# Expose port (Render uses PORT env var, default 10000)
-EXPOSE ${PORT:-10000}
+# Expose port 10000 (Render's default, actual port comes from PORT env var)
+EXPOSE 10000
 
-# Use PORT environment variable for Next.js
+# Use PORT environment variable for Next.js (Render sets this to 10000)
 CMD sh -c "node_modules/.bin/next start -p ${PORT:-10000}"
 
