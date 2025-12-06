@@ -3,8 +3,8 @@ FROM node:20-alpine AS builder
 
 WORKDIR /app
 
-# Install Python, build tools, and OpenSSL 1.1 compatibility for Prisma
-RUN apk add --no-cache python3 make g++ libcrypto1.1 libssl1.1
+# Install Python, build tools, and OpenSSL for Prisma
+RUN apk add --no-cache python3 make g++ openssl
 
 # Copy package files
 COPY package*.json ./
@@ -32,8 +32,8 @@ WORKDIR /app
 
 ENV NODE_ENV=production
 
-# Install Python, build tools, and OpenSSL 1.1 compatibility for Prisma
-RUN apk add --no-cache python3 make g++ libcrypto1.1 libssl1.1
+# Install Python, build tools, and OpenSSL for Prisma
+RUN apk add --no-cache python3 make g++ openssl
 
 # Copy package files
 COPY package*.json ./
